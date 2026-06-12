@@ -22,7 +22,6 @@ tmp/**/*
 *~.nib
 local.properties
 .settings/
-.loadpath
 .project
 .classpath
 
