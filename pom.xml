@@ -9,19 +9,20 @@
 
 	<name>github-actions</name>
 
-	<properties>
+<properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
     <app.runtime>4.10.0</app.runtime>
-
     <mule.maven.plugin.version>4.6.1</mule.maven.plugin.version>
 
     <app.name>github-actions</app.name>
 
     <env>DEV</env>
 
-    <target>nonprod-ps</target>
+    <target>dev-ps</target>
+
+    <business.group.id>b535ed21-dea8-4117-afa2-542cbdb0ed32</business.group.id>
 
     <munit.version>2.3.13</munit.version>
 </properties>
@@ -53,6 +54,8 @@
 
             <target>${target}</target>
 
+            <businessGroupId>${business.group.id}</businessGroupId>
+
             <applicationName>${app.name}</applicationName>
 
             <connectedAppClientId>${client.id}</connectedAppClientId>
@@ -77,6 +80,7 @@
 
     </configuration>
 </plugin>
+		
 			<plugin>
 				<groupId>com.mulesoft.munit.tools</groupId>
 				<artifactId>munit-maven-plugin</artifactId>
@@ -186,12 +190,12 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
-	<distributionManagement>
+<distributionManagement>
     <repository>
         <id>Repository</id>
         <name>Exchange Repository</name>
         <url>
-            https://maven.anypoint.mulesoft.com/api/v3/organizations/YOUR_ORG_ID/maven
+            https://maven.anypoint.mulesoft.com/api/v3/organizations/b535ed21-dea8-4117-afa2-542cbdb0ed32/maven
         </url>
         <layout>default</layout>
     </repository>
