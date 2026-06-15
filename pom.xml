@@ -10,15 +10,21 @@
 	<name>github-actions</name>
 
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-		<app.runtime>4.4.0</app.runtime>
-		<mule.maven.plugin.version>3.8.0</mule.maven.plugin.version>
-		<app.name>amartinez17-github-actions</app.name>
-		<env>Sandbox</env>
-		<munit.version>2.3.13</munit.version>
-	</properties>
+    <app.runtime>4.10.0</app.runtime>
+
+    <mule.maven.plugin.version>4.6.1</mule.maven.plugin.version>
+
+    <app.name>github-actions</app.name>
+
+    <env>DEV</env>
+
+    <target>nonprod-ps</target>
+
+    <munit.version>2.3.13</munit.version>
+</properties>
 
 	<build>
 		<plugins>
@@ -28,36 +34,49 @@
 				<version>3.0.0</version>
 			</plugin>
 			<plugin>
-				<groupId>org.mule.tools.maven</groupId>
-				<artifactId>mule-maven-plugin</artifactId>
-				<version>${mule.maven.plugin.version}</version>
-				<extensions>true</extensions>
-				<configuration>
-					<cloudHubDeployment>
-						<uri>https://anypoint.mulesoft.com</uri>
-						<muleVersion>${app.runtime}</muleVersion>
-						<!-- <username>${anypoint.username}</username>
-						<password>${anypoint.password}</password> -->
-						<!-- Start: CONNECTED APP -->
-						<connectedAppClientId>${client.id}</connectedAppClientId>
-						<connectedAppClientSecret>${client.secret}</connectedAppClientSecret>
-						<connectedAppGrantType>client_credentials</connectedAppGrantType>
-						<!-- End: CONNECTED APP -->
-						<applicationName>${app.name}</applicationName>
-						<environment>${env}</environment>
-						<workerType>MICRO</workerType>
-						<region>us-east-2</region>
-						<workers>1</workers>
-						<objectStoreV2>true</objectStoreV2>
-						<!-- Start: SECURED PROPERTIES CI/CD -->
-						<properties>
-							<secure.key>${decryption.key}</secure.key>
-						</properties>
-						<!-- End: SECURED PROPERTIES CI/CD -->
-					</cloudHubDeployment>
-					<classifier>mule-application</classifier>
-				</configuration>
-			</plugin>
+    <groupId>org.mule.tools.maven</groupId>
+    <artifactId>mule-maven-plugin</artifactId>
+    <version>${mule.maven.plugin.version}</version>
+    <extensions>true</extensions>
+
+    <configuration>
+
+        <classifier>mule-application</classifier>
+
+        <cloudhub2Deployment>
+
+            <uri>https://anypoint.mulesoft.com</uri>
+
+            <provider>MC</provider>
+
+            <environment>${env}</environment>
+
+            <target>${target}</target>
+
+            <applicationName>${app.name}</applicationName>
+
+            <connectedAppClientId>${client.id}</connectedAppClientId>
+
+            <connectedAppClientSecret>${client.secret}</connectedAppClientSecret>
+
+            <connectedAppGrantType>client_credentials</connectedAppGrantType>
+
+            <releaseChannel>EDGE</releaseChannel>
+
+            <muleVersion>${app.runtime}</muleVersion>
+
+            <replicas>1</replicas>
+
+            <vCores>0.1</vCores>
+
+            <deploymentSettings>
+                <generateDefaultPublicUrl>true</generateDefaultPublicUrl>
+            </deploymentSettings>
+
+        </cloudhub2Deployment>
+
+    </configuration>
+</plugin>
 			<plugin>
 				<groupId>com.mulesoft.munit.tools</groupId>
 				<artifactId>munit-maven-plugin</artifactId>
@@ -167,5 +186,15 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
+	<distributionManagement>
+    <repository>
+        <id>Repository</id>
+        <name>Exchange Repository</name>
+        <url>
+            https://maven.anypoint.mulesoft.com/api/v3/organizations/YOUR_ORG_ID/maven
+        </url>
+        <layout>default</layout>
+    </repository>
+</distributionManagement>
 
 </project>
