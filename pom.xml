@@ -75,6 +75,7 @@
             <deploymentSettings>
                 <generateDefaultPublicUrl>true</generateDefaultPublicUrl>
             </deploymentSettings>
+			
 
         </cloudhub2Deployment>
 
