@@ -5,7 +5,7 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>63b72089-5157-4db5-8a81-16d7d2a53a12</groupId>
+    <groupId>b535ed21-dea8-4117-afa2-542cbdb0ed32</groupId>
 
     <artifactId>loyalty-mobile-xapi</artifactId>
 
@@ -307,4 +307,3 @@
     </distributionManagement>
 
 </project>
-
