@@ -13,7 +13,7 @@ on:
       - main
 
 env:
-  MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
+  MAVEN_OPTS: "-Dmaven.repo.local=$HOME/.m2/repository"
 
 jobs:
   build:
